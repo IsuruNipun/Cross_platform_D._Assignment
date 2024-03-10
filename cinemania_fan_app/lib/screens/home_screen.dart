@@ -1,7 +1,10 @@
 import 'package:cinemania_fan_app/api/api.dart';
 import 'package:cinemania_fan_app/models/movie.dart';
+import 'package:cinemania_fan_app/screens/kids_mode_screen.dart';
 import 'package:cinemania_fan_app/screens/search_screen.dart';
+//import 'package:cinemania_fan_app/widgets/custom_tab_bar.dart';
 import 'package:cinemania_fan_app/widgets/movie_slider.dart';
+import 'package:cinemania_fan_app/widgets/side_menu.dart';
 import 'package:cinemania_fan_app/widgets/trending_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -16,12 +19,15 @@ class HomeScreen extends StatefulWidget
 
 
 
-class _HomeScreenState extends State<HomeScreen>
+class _HomeScreenState extends State<HomeScreen> 
 {
+   bool _isKidsModeEnabled = false;
 
   late Future<List<Movie>> trendingMovies;
   late Future<List<Movie>> topRatedMovies;
   late Future<List<Movie>> upcomingMovies;
+
+  
 
   @override
   void initState(){
@@ -29,13 +35,30 @@ class _HomeScreenState extends State<HomeScreen>
     trendingMovies = Api().getTrendingMovies();
     topRatedMovies = Api().getTopRatedMovies();
     upcomingMovies = Api().getUpcomingMovies();
+    
   }
+
+  
 
   @override
   Widget build(BuildContext context)
   {
     return Scaffold
     (
+      drawer: SideMenu(
+        isKidsModeEnabled: _isKidsModeEnabled,
+        onKidsModeChanged: (value) {
+          setState(() {
+            _isKidsModeEnabled = value;
+            if (_isKidsModeEnabled) {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => KidsScreen()),
+              );
+            }
+          });
+        },
+      ),
       appBar: AppBar
       (
         backgroundColor: Colors.transparent,
@@ -69,7 +92,7 @@ class _HomeScreenState extends State<HomeScreen>
           padding: const EdgeInsets.all(8.0),
           child: Column
           (
-            crossAxisAlignment: CrossAxisAlignment.start,
+             crossAxisAlignment: CrossAxisAlignment.start,
             children: 
             [
               Text
@@ -157,7 +180,7 @@ class _HomeScreenState extends State<HomeScreen>
                 ),
               ),
               
-            ],
+             ],
           ),
         ),
       ),

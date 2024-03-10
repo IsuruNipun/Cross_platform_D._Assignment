@@ -1,5 +1,6 @@
 import 'package:cinemania_fan_app/reusable_widgets.dart';
-import 'package:cinemania_fan_app/screens/home_screen.dart';
+//import 'package:cinemania_fan_app/screens/home_screen.dart';
+import 'package:cinemania_fan_app/screens/user_configuration_screen.dart';
 import 'package:flutter/material.dart';
 
 class SignUpScreen extends StatefulWidget{
@@ -56,7 +57,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
             ),
             signIn_signUp_button(context, false, (){
               Navigator.push(context,
-              MaterialPageRoute(builder: (context) => HomeScreen()));
+              MaterialPageRoute(builder: (context) => ConfigurationScreen()));
             }),
           ],
         ),

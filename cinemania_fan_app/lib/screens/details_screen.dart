@@ -2,6 +2,8 @@ import 'package:cinemania_fan_app/colors.dart';
 import 'package:cinemania_fan_app/constants.dart';
 import 'package:cinemania_fan_app/models/movie.dart';
 import 'package:cinemania_fan_app/widgets/back_button.dart';
+ 
+//import 'package:cinemania_fan_app/widgets/pop_up_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -56,6 +58,7 @@ class DetailsScreen extends StatelessWidget
                 ),
               ),
          ),
+         
          SliverToBoxAdapter
          (
           child: Padding
@@ -150,9 +153,12 @@ class DetailsScreen extends StatelessWidget
             ),
           ),
          ),
+         
        ],
       ),
       
     );
   }
 }
+
+
