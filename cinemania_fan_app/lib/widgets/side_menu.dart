@@ -1,5 +1,7 @@
+import 'package:cinemania_fan_app/screens/sign_in_screen.dart';
 import 'package:cinemania_fan_app/screens/watched_list.dart';
 import 'package:cinemania_fan_app/screens/wish_list.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class SideMenu extends StatelessWidget {
@@ -55,7 +57,13 @@ class SideMenu extends StatelessWidget {
            ListTile(
             leading: Icon(Icons.exit_to_app),
             title: Text('Log Out'),
-            onTap: () => null,
+            onTap: () {
+              FirebaseAuth.instance.signOut().then((value) {
+                print("sign out");
+                Navigator.push(context, 
+                MaterialPageRoute(builder: (context) => SignInScreen()));
+              });
+            },
            ),
           
           ],

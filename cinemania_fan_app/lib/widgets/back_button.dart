@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../colors.dart';
+
 
 class BackBtn extends StatelessWidget {
   const BackBtn({
@@ -20,8 +20,8 @@ class BackBtn extends StatelessWidget {
         ),
         decoration: BoxDecoration
         (
-          color: Colours.scaffoldBgColor,
-          borderRadius: BorderRadius.circular(8)
+          color: Colors.black,
+          borderRadius: BorderRadius.circular(10)
           ),
           child: IconButton(onPressed: ()
           {

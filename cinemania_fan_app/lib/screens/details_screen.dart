@@ -1,83 +1,84 @@
+// import 'package:cinemania_fan_app/colors.dart';
+// import 'package:cinemania_fan_app/constants.dart';
+// import 'package:cinemania_fan_app/models/movie.dart';
+// import 'package:cinemania_fan_app/widgets/back_button.dart';
+ 
+// //import 'package:cinemania_fan_app/widgets/pop_up_card.dart';
+// import 'package:flutter/material.dart';
+// import 'package:flutter/widgets.dart';
+// import 'package:google_fonts/google_fonts.dart';
+
+
+import 'package:cinemania_fan_app/api/api.dart';
+import 'package:cinemania_fan_app/models/cast.dart';
+import 'package:cinemania_fan_app/widgets/add_button.dart';
+import 'package:cinemania_fan_app/widgets/cast_slider.dart';
+import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:cinemania_fan_app/colors.dart';
 import 'package:cinemania_fan_app/constants.dart';
 import 'package:cinemania_fan_app/models/movie.dart';
 import 'package:cinemania_fan_app/widgets/back_button.dart';
- 
-//import 'package:cinemania_fan_app/widgets/pop_up_card.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:google_fonts/google_fonts.dart';
+// Make sure to import the AddButtonWidget file correctly
 
-class DetailsScreen extends StatelessWidget
-{
-  const DetailsScreen
-  (
-    {
-    super.key,
+
+class DetailsScreen extends StatelessWidget {
+  const DetailsScreen({
+    Key? key,
     required this.movie,
-    }
-  );
-  final Movie movie;
-  @override 
-  Widget build(BuildContext context)
-  {
-    return  Scaffold
-    (
-      body: CustomScrollView(slivers:
-      [
-        SliverAppBar.large
-        (
-          leading: const BackBtn(),
-              backgroundColor: Colours.scaffoldBgColor,
-              expandedHeight: 500,
-              pinned: true,
-              floating: true,
-              flexibleSpace: FlexibleSpaceBar
-              (
-                title: Text
-                (
-                  movie.title,
-                  style: GoogleFonts.belleza
-                  (
-                    fontSize: 17,
-                    fontWeight: FontWeight.w600
+  }) : super(key: key);
+
+  final Media movie;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Stack(
+        children: [
+          CustomScrollView(
+            slivers: [
+              SliverAppBar.large(
+                leading: const BackBtn(),
+                backgroundColor: Colours.scaffoldBgColor,
+                expandedHeight: 500,
+                pinned: true,
+                floating: true,
+                flexibleSpace: FlexibleSpaceBar(
+                  title: Text(
+                    movie.title,
+                    style: GoogleFonts.belleza(
+                      fontSize: 17,
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
-                ),
-                background: 
-                ClipRRect
-                (
-                  borderRadius: const BorderRadius.only
-                  (
-                    bottomLeft: Radius.circular(24),
-                    bottomRight: Radius.circular(24),
-                  ),
-                  child: Image.network('${Constants.imagePath}${movie.backDropPath}',
-                  filterQuality: FilterQuality.high,
-                  fit: BoxFit.cover,
+                  background: ClipRRect(
+                    borderRadius: const BorderRadius.only(
+                      bottomLeft: Radius.circular(24),
+                      bottomRight: Radius.circular(24),
+                    ),
+                    child: Image.network(
+                      '${Constants.imagePath}${movie.backDropPath}',
+                      filterQuality: FilterQuality.high,
+                      fit: BoxFit.cover,
+                    ),
                   ),
                 ),
               ),
-         ),
-         
-         SliverToBoxAdapter
-         (
-          child: Padding
-          (
-            padding: const EdgeInsets.all(12),
-            child: Column
-            (
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: 
-              [
-                Text
-                (
-                  'OverView',
-                  style: GoogleFonts.openSans
-                    (
-                      fontSize: 30,
-                      fontWeight: FontWeight.w800
-                    ),
-                ),
+              SliverToBoxAdapter(
+                child: Padding(
+                  padding: const EdgeInsets.all(12),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text
+                      (
+                        'OverView',
+                        style: GoogleFonts.openSans
+                          (
+                            fontSize: 30,
+                            fontWeight: FontWeight.w800
+                          ),
+                      ),
                 const SizedBox(height: 16),
                 Text(movie.overView,
                 style: GoogleFonts.roboto
@@ -146,19 +147,26 @@ class DetailsScreen extends StatelessWidget
                               ],
                             ),
                           ),
+                          
                         ],
                       ),
                     )
-              ],
-            ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
           ),
-         ),
-         
-       ],
+          Positioned(
+            right: 7,
+            bottom: 32.5,
+            child: AddButtonWidget(), // Using the AddButtonWidget
+          ),
+        ],
       ),
-      
     );
   }
 }
+
 
 

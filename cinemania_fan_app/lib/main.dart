@@ -1,12 +1,17 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
+import 'package:cinemania_fan_app/auth_gate.dart';
 import 'package:cinemania_fan_app/colors.dart';
+import 'package:cinemania_fan_app/firebase_options.dart';
 import 'package:cinemania_fan_app/screens/sign_in_screen.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 void main() async{
-  // WidgetsFlutterBinding.ensureInitialized();
-  // await Firebase.initializeApp();
-  runApp(const MyApp());
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+    runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -25,7 +30,7 @@ class MyApp extends StatelessWidget {
     //  home:const HomeScreen(),
      home:AnimatedSplashScreen(
       splash:
-       Image.asset('assets/images/logo_app.png'),
+       Image.asset('assets/images/Cinemania.png'),
        duration: 3000,
        splashTransition: SplashTransition.fadeTransition,
        backgroundColor: Colors.black,

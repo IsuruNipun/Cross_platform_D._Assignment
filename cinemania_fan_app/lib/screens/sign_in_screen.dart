@@ -1,5 +1,8 @@
 import 'package:cinemania_fan_app/reusable_widgets.dart';
+//import 'package:cinemania_fan_app/screens/home_screen.dart';
 import 'package:cinemania_fan_app/screens/sign_up_screen.dart';
+import 'package:cinemania_fan_app/screens/user_configuration_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
@@ -21,7 +24,9 @@ class _SignInScreenState extends State<SignInScreen> {
         child: SingleChildScrollView(
           child: Padding(padding: EdgeInsets.fromLTRB(20, MediaQuery.of(context).size.height *0.2,20,0),
       //if i want to ad the logo
+        
         child: Column(children: <Widget>[
+          logoWidget('assets/images/Cinemania.png'),
           SizedBox(
             height: 30,
           ),
@@ -33,7 +38,13 @@ class _SignInScreenState extends State<SignInScreen> {
           SizedBox(
             height: 30,
           ),
-          signIn_signUp_button(context, true, (){}),
+          signIn_signUp_button(context, true, (){
+            FirebaseAuth.instance.signInWithEmailAndPassword(email: _emailTextController.text,
+             password:_passwordTextController.text).then((value) {
+              Navigator.push(context, 
+              MaterialPageRoute(builder: (context)=> ConfigurationScreen()));
+             });
+          }),
           signUpOption()
         ],
         ),

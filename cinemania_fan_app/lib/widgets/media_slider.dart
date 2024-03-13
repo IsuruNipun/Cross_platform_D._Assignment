@@ -2,8 +2,8 @@ import 'package:cinemania_fan_app/constants.dart';
 import 'package:cinemania_fan_app/screens/details_screen.dart';
 import 'package:flutter/material.dart';
 
-class MoviesSlider extends StatelessWidget {
-  const MoviesSlider({
+class MediaSlider extends StatelessWidget {
+  const MediaSlider({
     super.key,required this.snapshot,
   });
 

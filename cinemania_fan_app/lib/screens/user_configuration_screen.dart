@@ -1,4 +1,5 @@
 
+import 'package:cinemania_fan_app/screens/kids_mode_screen.dart';
 import 'package:cinemania_fan_app/widgets/back_button.dart';
 import 'package:flutter/material.dart';
 import 'package:cinemania_fan_app/screens/home_screen.dart';
@@ -29,7 +30,7 @@ class ConfigurationScreen extends StatelessWidget {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => HomeScreen()),
+                      MaterialPageRoute(builder: (context) => KidsScreen()),
                     );
                   },
                   child: Text('Kids and Family'),

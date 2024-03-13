@@ -1,5 +1,5 @@
 
-class Movie
+class Media
 {
   String title;
   String backDropPath;
@@ -8,8 +8,9 @@ class Movie
   String posterPath;
   String releaseDate;
   double voteAverage;
+  double id;
 
-  Movie({
+  Media({
     required this.title,
     required this.backDropPath,
     required this.originalTiltle,
@@ -17,17 +18,21 @@ class Movie
     required this.posterPath,
     required this.releaseDate,
     required this.voteAverage,
+    required this.id,
   });
 
-  factory Movie.fromJson(Map<String, dynamic>json){
-    return Movie(
-      title: json["title"],
-      backDropPath: json["backdrop_path"],
-      originalTiltle:json["original_title"],
-      overView: json["overview"],
-      posterPath: json["poster_path"],
-      releaseDate: json["release_date"],
-      voteAverage: json["vote_average"],
+  
+
+  factory Media.fromJson(Map<String, dynamic> json) {
+    return Media(
+      title: json["title"] ?? json["original_name"] ?? 'Unknown Title',
+      backDropPath: json["backdrop_path"] ?? '',
+      originalTiltle: json["original_title"] ?? json["name"] ?? '',
+      overView: json["overview"] ?? '',
+      posterPath: json["poster_path"] ?? '',
+      releaseDate: json["release_date"] ?? json["first_air_date"] ?? '',
+      voteAverage: json["vote_average"]?.toDouble() ?? 0.0,
+      id: json["id"]?.toDouble() ?? 0.0,
     );
   }
 

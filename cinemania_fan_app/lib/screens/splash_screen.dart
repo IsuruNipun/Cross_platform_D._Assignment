@@ -1,4 +1,6 @@
+import 'package:cinemania_fan_app/auth_gate.dart';
 import 'package:cinemania_fan_app/screens/home_screen.dart';
+import 'package:cinemania_fan_app/screens/sign_in_screen.dart';
 import 'package:flutter/material.dart';
 
 class Splash extends StatefulWidget{
@@ -16,8 +18,9 @@ class _SplashState extends State<Splash> {
   }
 
   _navigatehome()async{
-    await Future.delayed(Duration(microseconds: 3000),() {});
-    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> HomeScreen()));
+    await Future.delayed(Duration(seconds: 3),() {});
+    // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> AuthGate()));
+    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> SignInScreen()));
   }
 
   @override
@@ -28,7 +31,9 @@ class _SplashState extends State<Splash> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Container(height: 100, width: 100,color: Colors.blue,),
+              Container(
+                
+                height: 100, width: 100,color: Colors.black,),
               Container(
                 child: Text(
                   'splash scrren',style: TextStyle(
