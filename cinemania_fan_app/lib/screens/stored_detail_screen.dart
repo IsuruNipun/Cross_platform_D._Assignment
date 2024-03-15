@@ -1,16 +1,15 @@
-import 'package:cinemania_fan_app/widgets/add_button.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:cinemania_fan_app/colors.dart';
 import 'package:cinemania_fan_app/constants.dart';
 import 'package:cinemania_fan_app/models/movie.dart';
 import 'package:cinemania_fan_app/widgets/back_button.dart';
-// Make sure to import the AddButtonWidget file correctly
 
 
-class DetailsScreen extends StatelessWidget {
+
+class StoredDetailsScreen extends StatelessWidget {
   final Media movie;
-  const DetailsScreen({
+  const StoredDetailsScreen({
     Key? key,
     required this.movie,
   }) : super(key: key);
@@ -144,11 +143,7 @@ class DetailsScreen extends StatelessWidget {
               ),
             ],
           ),
-          Positioned(
-            right: 7,
-            top: 32.5,
-            child: AddButtonWidget(movie: movie), // Using the AddButtonWidget
-          ),
+          
         ],
       ),
     );

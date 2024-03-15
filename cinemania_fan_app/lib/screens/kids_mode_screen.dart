@@ -1,5 +1,8 @@
+
 import 'package:cinemania_fan_app/screens/home_screen.dart';
-import 'package:cinemania_fan_app/screens/search.dart';
+import 'package:cinemania_fan_app/screens/kids_search_screen.dart';
+
+import 'package:cinemania_fan_app/widgets/media_slider.dart';
 import 'package:cinemania_fan_app/widgets/side_menu.dart';
 import 'package:cinemania_fan_app/widgets/trending_slider.dart';
 import 'package:flutter/material.dart';
@@ -16,12 +19,16 @@ class KidsScreen extends StatefulWidget {
 
 class _KidsScreenState extends State<KidsScreen> {
   late Future<List<Media>> kidsMedia;
+  late Future<List<Media>> kidsMovies;
+  late Future<List<Media>> kidsTv;
   bool _isKidsModeEnabled = false;
 
   @override
   void initState() {
     super.initState();
-    kidsMedia = Api().getKidsMovies(10751); // Implement this method in your API class
+   // kidsMedia = Api().getKidsMedia(10751);
+    kidsMovies = Api().getKidsMovies(10751);
+    kidsTv = Api().getKidsTvSeries(10751); // Implement this method in your API class
   }
 
   @override
@@ -57,36 +64,14 @@ class _KidsScreenState extends State<KidsScreen> {
               // Navigate to the search screen
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => SearchPage()),
+                MaterialPageRoute(builder: (context) => KidsSearchScreen()),
               );
             },
             icon: Icon(Icons.search),
           ),
         ],
       ),
-      // body: FutureBuilder<List<Movie>>(
-      //   future: kidsMovies,
-      //   builder: (context, snapshot) {
-      //     if (snapshot.connectionState == ConnectionState.waiting) {
-      //       return Center(child: CircularProgressIndicator());
-      //     } else if (snapshot.hasError) {
-      //       return Center(child: Text('Error fetching movies'));
-      //     } else {
-      //       return ListView.builder(
-      //         itemCount: snapshot.data?.length ?? 0,
-      //         itemBuilder: (context, index) {
-      //           Movie movie = snapshot.data![index];
-      //           // Implement your movie item widget
-      //           return ListTile(
-      //             title: Text(movie.title),
-      //             // Add more movie details here
-      //           );
-      //         },
-      //       );
-      //     }
-      //   },
-      // ),
-
+      
       body: SingleChildScrollView
       (
         physics: const BouncingScrollPhysics(),
@@ -98,15 +83,11 @@ class _KidsScreenState extends State<KidsScreen> {
              crossAxisAlignment: CrossAxisAlignment.start,
             children: 
             [
-              Text
-              (
-                'Trending Movies',
-                style: GoogleFonts.aBeeZee(fontSize: 25),
-              ),
+              
               const SizedBox(height: 32),
               SizedBox(
                 child: FutureBuilder(
-                  future: kidsMedia,
+                  future: kidsMovies,
                   builder: (context,snapshot){
                     if (snapshot.hasError){
                       return Center(child: Text(snapshot.error.toString()),
@@ -116,6 +97,67 @@ class _KidsScreenState extends State<KidsScreen> {
                     {
                       // final data = snapshot.data;
                       return  TrendingSlider(snapshot: snapshot,);
+                    }
+                    else{
+                      return const Center(child: CircularProgressIndicator());
+                    }
+                  },
+                  
+                ),
+              ),
+
+              const SizedBox(height: 32),
+              Text
+              (
+                'Kids Movies',
+                style: GoogleFonts.aBeeZee
+                (
+                  fontSize: 25,
+                ),
+              ),
+              const SizedBox(height: 32),
+              SizedBox(
+                child: FutureBuilder(
+                  future: kidsMovies,
+                  builder: (context,snapshot){
+                    if (snapshot.hasError){
+                      return Center(child: Text(snapshot.error.toString()),
+                      );
+                    }
+                    else if(snapshot.hasData)
+                    {
+                      // final data = snapshot.data;
+                      return  MediaSlider(snapshot: snapshot,);
+                    }
+                    else{
+                      return const Center(child: CircularProgressIndicator());
+                    }
+                  },
+                ),
+              ),
+
+              const SizedBox(height: 32),
+              Text
+              (
+                'Kids Tv Series',
+                style: GoogleFonts.aBeeZee
+                (
+                  fontSize: 25,
+                ),
+              ),
+              const SizedBox(height: 32),
+              SizedBox(
+                child: FutureBuilder(
+                  future: kidsTv,
+                  builder: (context,snapshot){
+                    if (snapshot.hasError){
+                      return Center(child: Text(snapshot.error.toString()),
+                      );
+                    }
+                    else if(snapshot.hasData)
+                    {
+                      // final data = snapshot.data;
+                      return  MediaSlider(snapshot: snapshot,);
                     }
                     else{
                       return const Center(child: CircularProgressIndicator());

@@ -1,5 +1,4 @@
-import 'package:cinemania_fan_app/auth_gate.dart';
-import 'package:cinemania_fan_app/screens/home_screen.dart';
+
 import 'package:cinemania_fan_app/screens/sign_in_screen.dart';
 import 'package:flutter/material.dart';
 

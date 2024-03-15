@@ -1,4 +1,3 @@
-
 import 'package:cinemania_fan_app/constants.dart';
 import 'package:cinemania_fan_app/models/movie.dart';
 import 'package:cinemania_fan_app/screens/details_screen.dart';
@@ -7,12 +6,12 @@ import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
-class SearchPage extends StatefulWidget {
+class KidsSearchScreen extends StatefulWidget {
   @override
-  _SearchScreenState createState() => _SearchScreenState();
+  _KidsSearchScreenState createState() => _KidsSearchScreenState();
 }
 
-class _SearchScreenState extends State<SearchPage> {
+class _KidsSearchScreenState extends State<KidsSearchScreen> {
   late TextEditingController _searchController;
   late Future<List<Media>> _searchResults;
 
@@ -30,24 +29,33 @@ class _SearchScreenState extends State<SearchPage> {
   }
 
   Future<List<Media>> _searchMovies(String query) async {
-    final List<Media> searchResults = [];
+  final List<Media> searchResults = [];
 
-    final response = await http.get(
-      Uri.parse(
-        'https://api.themoviedb.org/3/search/multi?query=$query&api_key=${Constants.apiKey}',
-      ),
+  final response = await http.get(
+    Uri.parse(
+      'https://api.themoviedb.org/3/search/multi?query=$query&api_key=${Constants.apiKey}',
+    ),
+  );
+
+  if (response.statusCode == 200) {
+    final Map<String, dynamic> data = jsonDecode(response.body);
+    final List<dynamic> results = data['results'] ?? [];
+
+    // Filter results for kid-friendly genres
+    final kidGenres = {10751}; // Family genre ID
+    searchResults.addAll(
+      results.where((result) {
+        // Check if the media item's genre IDs match kid-friendly genres
+        List<dynamic> genreIds = result['genre_ids'] ?? [];
+        return genreIds.any(kidGenres.contains);
+      }).map((json) => Media.fromJson(json)).toList(),
     );
-
-    if (response.statusCode == 200) {
-      final Map<String, dynamic> data = jsonDecode(response.body);
-      final List<dynamic> results = data['results'] ?? [];
-      searchResults.addAll(results.map((json) => Media.fromJson(json)).toList());
-    } else {
-      throw Exception('Failed to search movies, TV shows, and actors');
-    }
-
-    return searchResults;
+  } else {
+    throw Exception('Failed to search movies, TV shows, and actors');
   }
+
+  return searchResults;
+}
 
   @override
   Widget build(BuildContext context) {
@@ -81,8 +89,7 @@ class _SearchScreenState extends State<SearchPage> {
       ),
       body: Stack(
         children: [
-          
-          FutureBuilder<List<Media>>(
+           FutureBuilder<List<Media>>(
           future: _searchResults,
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
@@ -138,7 +145,6 @@ class _SearchScreenState extends State<SearchPage> {
             }
           },
         ),
-
            Positioned(
             left: 0,
             bottom: 10,

@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:cinemania_fan_app/constants.dart';
-import 'package:cinemania_fan_app/models/cast.dart';
+
 import 'package:cinemania_fan_app/models/movie.dart';
 import 'package:http/http.dart' as http;
 
@@ -20,9 +20,24 @@ class Api{
   static const _kidsmoviesUrl = 'https://api.themoviedb.org/3/discover/movie?api_key=${Constants.apiKey}&with_genres=10751';
   static const _kidsTvseriesUrl = 'https://api.themoviedb.org/3/discover/tv?api_key=${Constants.apiKey}&with_genres=10751';
   static const _kidsmediaUrl = 'https://api.themoviedb.org/3/search/multi?api_key=${Constants.apiKey}&with_genres=10751';
+  
+  
+  //highest grosing movies
+   static const _highestgrossMovieUrl ='https://api.themoviedb.org/3/discover/movie?api_key=${Constants.apiKey}&sort_by=revenue.desc';
 
+   Future<List<Media>> getHighestGrossMovies() async{
+    final response = await http.get(Uri.parse(_highestgrossMovieUrl));
+    if (response.statusCode == 200){
+      final decodedData = json.decode(response.body)['results'] as List;
+      return decodedData.map((movie)=> Media.fromJson(movie)).toList();
+    }
+    else
+    {
+      throw Exception('Something happened');
+    }
+  }
 
-
+  
 
 //trending movies
   Future<List<Media>> getTrendingMovies() async{

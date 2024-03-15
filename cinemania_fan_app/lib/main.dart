@@ -1,5 +1,4 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
-import 'package:cinemania_fan_app/auth_gate.dart';
 import 'package:cinemania_fan_app/colors.dart';
 import 'package:cinemania_fan_app/firebase_options.dart';
 import 'package:cinemania_fan_app/screens/sign_in_screen.dart';

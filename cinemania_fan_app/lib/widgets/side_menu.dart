@@ -1,3 +1,4 @@
+
 import 'package:cinemania_fan_app/screens/sign_in_screen.dart';
 import 'package:cinemania_fan_app/screens/watched_list.dart';
 import 'package:cinemania_fan_app/screens/wish_list.dart';
@@ -16,34 +17,36 @@ class SideMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final user = FirebaseAuth.instance.currentUser; // Fetch the current user
+    final email = user?.email ?? 'your.email@example.com'; // Use a placeholder if the email is not available
+
+
     return Drawer(
         child: ListView(
           padding: EdgeInsets.zero,
           children: [
            UserAccountsDrawerHeader(
-            accountName: Text('isuru nipun',
-            style: TextStyle(color: Colors.black)
-            ),
-            accountEmail: Text('isuru@gmail.com',style: TextStyle(color: Colors.black)),
+            accountEmail: Text(email,style: TextStyle(color: Colors.black)),
             currentAccountPicture: CircleAvatar(
               backgroundColor: Colors.black,
               child: ClipOval(
-                child: Icon(Icons.home),
+                child: Image.asset('assets/images/Cinemania.png'),
                 ),
               ),
               decoration: BoxDecoration(color: Colors.white),
+               accountName: null,
             ),
            ListTile(
             leading: Icon(Icons.play_arrow),
             title: Text('Watched list'),
             onTap: () {Navigator.push(context,
-            MaterialPageRoute(builder: (context)=> WatchedList())); }
+            MaterialPageRoute(builder: (context)=> WatchedListScreen())); }
            ),
            ListTile(
             leading: Icon(Icons.play_arrow),
             title: Text('Wish List'),
             onTap: () {Navigator.push(context,
-            MaterialPageRoute(builder: (context)=> WishList())); }
+            MaterialPageRoute(builder: (context)=> WishListScreen())); }
            ),
            Divider(),
            ListTile(

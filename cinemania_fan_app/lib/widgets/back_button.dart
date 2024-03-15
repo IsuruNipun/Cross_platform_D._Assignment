@@ -1,3 +1,4 @@
+//back button
 import 'package:flutter/material.dart';
 
 
@@ -11,8 +12,8 @@ class BackBtn extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container
     (
-      height: 70,
-      width: 70, 
+      height: 60,
+      width: 60, 
       margin: const EdgeInsets.only
       (
         top: 8,
@@ -21,15 +22,17 @@ class BackBtn extends StatelessWidget {
         decoration: BoxDecoration
         (
           color: Colors.black,
-          borderRadius: BorderRadius.circular(10)
+          
+          borderRadius: BorderRadius.circular(100)
           ),
           child: IconButton(onPressed: ()
           {
             Navigator.pop(context);
           },
           icon: const Icon(
-            Icons.arrow_back_rounded,
+            Icons.arrow_back_rounded 
           ),
+          
           ),
         );
   }

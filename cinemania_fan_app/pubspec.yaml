@@ -12,11 +12,14 @@ dependencies:
   animated_splash_screen:
   cupertino_icons: ^1.0.6
   google_fonts: ^6.2.1
-  http: ^1.1.0
+  http: ^1.2.1
   carousel_slider: ^4.2.1
   firebase_core: ^2.24.2
   firebase_auth: ^4.16.0
   firebase_ui_auth: ^1.13.0
+  cloud_firestore: ^4.15.9
+  connectivity_plus: ^5.0.2
+  
 
 dev_dependencies:
   flutter_test:
@@ -30,7 +33,7 @@ flutter:
 
   assets:
     - assets/images/Cinemania.png
-    - assets/images/flutflix.png
+    # - assets/images/flutflix.png
     - assets/images/nameLogo.png
     
     
