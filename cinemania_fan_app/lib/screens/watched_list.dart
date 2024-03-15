@@ -104,10 +104,10 @@ class WatchedListScreen extends StatelessWidget {
           .collection('watchlist')
           .doc(docId)
           .delete();
-      // Optionally, show a Snackbar to confirm deletion
+     
     } catch (e) {
       print("Error deleting document: $e");
-      // Optionally, show a Snackbar with the error message
+      
     }
   }
 }

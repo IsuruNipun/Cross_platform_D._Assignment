@@ -6,9 +6,9 @@ import 'package:cinemania_fan_app/widgets/media_slider.dart';
 import 'package:cinemania_fan_app/widgets/side_menu.dart';
 import 'package:cinemania_fan_app/widgets/trending_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:cinemania_fan_app/models/movie.dart'; // Assuming you have a Movie model
+import 'package:cinemania_fan_app/models/movie.dart'; 
 import 'package:cinemania_fan_app/api/api.dart';
-import 'package:google_fonts/google_fonts.dart'; // Assuming you have an API class to handle requests
+import 'package:google_fonts/google_fonts.dart'; 
 
 class KidsScreen extends StatefulWidget {
   const KidsScreen({Key? key}) : super(key: key);

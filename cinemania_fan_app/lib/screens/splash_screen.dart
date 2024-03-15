@@ -18,7 +18,7 @@ class _SplashState extends State<Splash> {
 
   _navigatehome()async{
     await Future.delayed(Duration(seconds: 3),() {});
-    // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> AuthGate()));
+    
     Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> SignInScreen()));
   }
 

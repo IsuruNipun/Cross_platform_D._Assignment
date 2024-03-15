@@ -16,11 +16,11 @@ class DefaultFirebaseOptions {
      case TargetPlatform.macOS:
        return macos;
      case TargetPlatform.fuchsia:
-       // TODO: Handle this case.
+       
      case TargetPlatform.linux:
-       // TODO: Handle this case.
+       
      case TargetPlatform.windows:
-       // TODO: Handle this case.
+       
    }
 
    throw UnsupportedError(

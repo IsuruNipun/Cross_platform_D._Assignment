@@ -5,7 +5,7 @@ import 'package:cinemania_fan_app/colors.dart';
 import 'package:cinemania_fan_app/constants.dart';
 import 'package:cinemania_fan_app/models/movie.dart';
 import 'package:cinemania_fan_app/widgets/back_button.dart';
-// Make sure to import the AddButtonWidget file correctly
+
 
 
 class DetailsScreen extends StatelessWidget {

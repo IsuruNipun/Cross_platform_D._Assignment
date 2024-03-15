@@ -19,7 +19,7 @@ class ConfigurationScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SizedBox(height: 20), //  adjust the size to create space above the image
-            Image.asset('assets/images/Cinemania.png', // Replace with your image URL
+            Image.asset('assets/images/Cinemania.png', 
               width: 200, //  adjust the size 
               height: 100, //  adjust the size 
               fit: BoxFit.cover, 
@@ -44,15 +44,15 @@ class ConfigurationScreen extends StatelessWidget {
                   child: Text('Kids and Family',
                   style: TextStyle(
                     fontSize: 20.0,
-                    color: Colors.black, // Set your desired font size here
+                    color: Colors.black, 
                   ),
                   ),
                  style: ElevatedButton.styleFrom(
                     foregroundColor: Colors.black, 
-                    backgroundColor: Colors.white, // Set the ripple color (on press) to black (optional)
+                    backgroundColor: Colors.white, 
                     padding: EdgeInsets.symmetric(horizontal: 32.0, vertical: 20.0), // Custom padding
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30), // Optional: if you want rounded corners
+                      borderRadius: BorderRadius.circular(30), 
                     ),
                   ),
                 ),
@@ -72,10 +72,10 @@ class ConfigurationScreen extends StatelessWidget {
                   ),
                   style: ElevatedButton.styleFrom(
                     foregroundColor: Colors.black, 
-                    backgroundColor: Colors.white, // Set the ripple color (on press) to black (optional)
+                    backgroundColor: Colors.white, 
                     padding: EdgeInsets.symmetric(horizontal: 32.0, vertical: 20.0), // Custom padding
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30), // Optional: if you want rounded corners
+                      borderRadius: BorderRadius.circular(30), 
                     ),
                   ),
                 ),

@@ -41,7 +41,7 @@ class Media
 
   factory Media.fromMap(Map<String, dynamic> map) {
   return Media(
-    // Add all fields that are stored in Firestore and you want to display
+    // Add all fields that are stored in Firestore 
     title: map['title'] as String,
     overView: map['overview'] as String,
     backDropPath:map['backDrop_Path'] as String,
